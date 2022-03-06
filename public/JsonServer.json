@@ -1,0 +1,190 @@
+{
+  "right": [
+    {
+      "id": 1,
+      "key": "/home",
+      "title": "首页",
+      "pagePermission": 1,
+      "grade": 1
+    },
+    {
+      "id": 2,
+      "key": "/user-manage",
+      "title": "用户管理",
+      "pagePermission": 1,
+      "grade": 1
+    },
+    {
+      "id": 7,
+      "key": "/right-manage",
+      "title": "权限管理",
+      "pagePermission": 1,
+      "grade": 1
+    },
+    {
+      "id": 14,
+      "key": "/news-manage",
+      "title": "新闻管理管理",
+      "pagePermission": 1,
+      "grade": 1
+    },
+    {
+      "id": 21,
+      "key": "/audit-manage",
+      "title": "审核管理",
+      "pagePermission": 1,
+      "grade": 1
+    },
+    {
+      "id": 24,
+      "key": "/publish-manage/",
+      "title": "发布管理",
+      "pagePermission": 1,
+      "grade": 1
+    }
+  ],
+  "children": [
+    {
+      "id": 3,
+      "title": "添加用户",
+      "rightId": 2,
+      "key": "/user-manage/add",
+      "grade": 2
+    },
+    {
+      "id": 4,
+      "title": "删除用户",
+      "rightId": 2,
+      "key": "/user-manage/delete",
+      "grade": 2
+    },
+    {
+      "id": 5,
+      "title": "修改用户",
+      "rightId": 2,
+      "key": "/user-manage/update",
+      "grade": 2
+    },
+    {
+      "id": 6,
+      "title": "用户列表",
+      "rightId": 2,
+      "key": "/user-manage/list",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 8,
+      "title": "角色列表",
+      "rightId": 7,
+      "key": "/right-manage/role/list",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 9,
+      "title": "权权限色",
+      "rightId": 7,
+      "key": "/right-manage/right/list",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 23,
+      "title": "审核列表",
+      "rightId": 21,
+      "key": "/audit-manage/list",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 25,
+      "title": "待发布",
+      "rightId": 24,
+      "key": "/publish-manage/unpublished",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 27,
+      "title": "已发布",
+      "rightId": 24,
+      "key": "/publish-manage/published",
+      "pagePermission": 1,
+      "grade": 2
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "roleName": "超级管理员",
+      "roleType": 1,
+      "rights": [
+        "/home",
+        "/publish-manage/",
+        "/publish-manage/unpublished",
+        "/publish-manage/published",
+        "/news-manage",
+        "/user-manage",
+        "/user-manage/add",
+        "/user-manage/delete",
+        "/user-manage/update",
+        "/user-manage/list",
+        "/right-manage",
+        "/right-manage/role/list",
+        "/right-manage/right/list",
+        "/audit-manage",
+        "/audit-manage/list"
+      ]
+    },
+    {
+      "id": 2,
+      "roleName": "区域管理员",
+      "roleType": 1,
+      "rights": [
+        "/user-manage/add",
+        "/user-manage/update",
+        "/user-manage/list",
+        "/right-manage",
+        "/right-manage/role/list",
+        "/right-manage/right/list",
+        "/news-manage",
+        "/home",
+        "/audit-manage",
+        "/audit-manage/list",
+        "/publish-manage/",
+        "/publish-manage/unpublished",
+        "/publish-manage/published"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": 123,
+      "roleSate": true,
+      "default": true,
+      "region": "",
+      "roleId": 1
+    },
+    {
+      "id": 2,
+      "username": "local",
+      "password": 123,
+      "roleSate": true,
+      "default": false,
+      "region": "亚洲",
+      "roleId": 2
+    },
+    {
+      "id": 3,
+      "username": "sion",
+      "password": 123,
+      "roleSate": true,
+      "default": false,
+      "region": "南极洲",
+      "roleId": 2
+    }
+  ]
+}

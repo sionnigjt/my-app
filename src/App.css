@@ -1,38 +1,12 @@
-.App {
-  text-align: center;
+@import '~antd/dist/antd.css';
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: rgb(22, 15, 49); /* or add it to the track */
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar-thumb {
+    background: rgb(134, 134, 143);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.site-layout-background::-webkit-scrollbar{
+  background-color: rgb(235, 225, 225); /* or add it to the track */
 }
