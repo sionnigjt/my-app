@@ -142,19 +142,32 @@
       "roleName": "区域管理员",
       "roleType": 1,
       "rights": [
-        "/user-manage/add",
         "/user-manage/update",
-        "/user-manage/list",
-        "/right-manage",
-        "/right-manage/role/list",
-        "/right-manage/right/list",
         "/news-manage",
-        "/home",
         "/audit-manage",
         "/audit-manage/list",
         "/publish-manage/",
         "/publish-manage/unpublished",
-        "/publish-manage/published"
+        "/publish-manage/published",
+        "/home",
+        "/user-manage/delete",
+        "/user-manage/add",
+        "/user-manage",
+        "/user-manage/list"
+      ]
+    },
+    {
+      "id": 3,
+      "roleName": "区域编辑",
+      "roleType": 1,
+      "rights": [
+        "/news-manage",
+        "/audit-manage",
+        "/audit-manage/list",
+        "/publish-manage/",
+        "/publish-manage/unpublished",
+        "/publish-manage/published",
+        "/home"
       ]
     }
   ],
@@ -185,6 +198,72 @@
       "default": false,
       "region": "南极洲",
       "roleId": 2
+    },
+    {
+      "username": "周面筋",
+      "password": "123",
+      "region": 7,
+      "roleId": 2,
+      "roleSate": false,
+      "default": false,
+      "id": 6
+    },
+    {
+      "username": "21231",
+      "password": "12312",
+      "region": 6,
+      "roleId": 2,
+      "roleSate": true,
+      "default": false,
+      "id": 8
+    },
+    {
+      "username": "ewrwer",
+      "password": "3r23",
+      "region": "全球",
+      "roleId": 1,
+      "roleSate": true,
+      "default": false,
+      "id": 9
+    },
+    {
+      "username": "test",
+      "password": "123",
+      "region": "亚洲",
+      "roleId": 3,
+      "roleSate": true,
+      "default": false,
+      "id": 10
+    }
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "value": "亚洲"
+    },
+    {
+      "id": 2,
+      "value": "欧洲"
+    },
+    {
+      "id": 3,
+      "value": "北美洲"
+    },
+    {
+      "id": 4,
+      "value": "南美洲"
+    },
+    {
+      "id": 5,
+      "value": "非洲"
+    },
+    {
+      "id": 6,
+      "value": "大洋洲"
+    },
+    {
+      "id": 7,
+      "value": "南极洲"
     }
   ]
 }

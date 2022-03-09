@@ -1,0 +1,16 @@
+.loginContent{
+    position: fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  width: 500px;
+  padding: 20px;
+  background:rgba(0, 0, 0, 0.6)
+    /* height: 500px;  */
+}
+.loginTitleName{
+    text-align: center;
+    color: aliceblue;
+    font-size: 28px;
+    padding-bottom: 12px;
+}

@@ -40,8 +40,10 @@ export default function Sidemenu() {
       setMenuList(resolve.data)
     })
   }, [])
+  //过滤信息
+  const { role: { rights } } = JSON.parse(localStorage.getItem('token'))
   const checkPagePermission = function (item) {
-    return item.pagePermission === 1
+    return item.pagePermission === 1 && rights.includes(item.key)
   }
 
   const renderMenu = (menuList) => {

@@ -5,19 +5,27 @@ import {
     MenuFoldOutlined,
     UserOutlined
 } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom'
 import { Dropdown, Menu, Avatar } from 'antd';
 
-export default function TopHeader() {
+function TopHeader() {
+    const Navigate = useNavigate()
     const [collapsed, setCollapsed] = useState(false);
+
+    const { role: { roleName }, username } = JSON.parse(localStorage.getItem('token'))
     const changeCollapsed = () => {
         setCollapsed(!collapsed)
+    }
+    const quitLgin = () => {
+        Navigate("/login")
+        localStorage.removeItem('token')
     }
     const menu = (
         <Menu >
             <Menu.Item>
-                超级管理员
+                {roleName}
             </Menu.Item>
-            <Menu.Item danger={true}>
+            <Menu.Item danger={true} onClick={() => quitLgin()}>
                 退出
             </Menu.Item>
         </Menu>
@@ -27,13 +35,14 @@ export default function TopHeader() {
 
             {collapsed ? <MenuUnfoldOutlined onClick={changeCollapsed} style={{ padding: '0 25px' }} ></MenuUnfoldOutlined> : <MenuFoldOutlined onClick={changeCollapsed} style={{ padding: '0 25px' }}></MenuFoldOutlined>}
             <div style={{ float: "right", padding: "0 1em 0 0" }}>
-                <span >欢迎回来</span>
+                <span style={{ padding: '0 0.5em 0 0' }} >欢迎{username}回来</span>
                 <Dropdown overlay={menu}>
-                    <span style={{ padding: "0 0.5em 0 0.5em" }}>hover me</span>
+                    <Avatar icon={<UserOutlined />} />
                 </Dropdown>
-                <Avatar icon={<UserOutlined />} />
+
             </div>
         </Header >
 
     )
 }
+export default TopHeader
