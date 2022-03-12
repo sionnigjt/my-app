@@ -15,7 +15,7 @@ export default function WriteNews() {
     const [NewsContent, setNewsContent] = useState("")
     const Navigate = useNavigate()
     useEffect(() => {
-        axios.get('http://localhost:5000/categories').then(res => {
+        axios.get('/ajax/categories').then(res => {
             setCategories(res.data)
             // console.log(categories);
         })
@@ -45,7 +45,7 @@ export default function WriteNews() {
     }
     const handlSave = (auditState) => {
         let userInfo = JSON.parse(localStorage.getItem('token'))
-        axios.post("http://localhost:5000/news", {
+        axios.post("/ajax/news", {
             ...NewsTitle,
             "content": NewsContent,
             "region": userInfo.region,
@@ -63,7 +63,7 @@ export default function WriteNews() {
                 message: `通知`,
                 description:
                     `你可以到${auditState === 0 ? '审核箱' : '审核列表'}中查看您的新闻`,
-                bottomRight: "bottomRight"
+                placement: "bottomRight"
             });
         })
     }
@@ -88,7 +88,7 @@ export default function WriteNews() {
                     >
                         <Form.Item
                             label="新闻标题"
-                            name="newTitle"
+                            name="title"
                             rules={[{ required: true }]}
                         >
                             <Input />

@@ -10,12 +10,12 @@ export default function RightRoleList() {
   const [currentRights, setCurrentRights] = useState([])
   const [currentId, setcurrentId] = useState(-1)
   useEffect(() => {
-    axios.get("http://localhost:5000/roles").then((res) => {
+    axios.get("/ajax/roles").then((res) => {
       setDataSource(res.data)
     })
   }, [])
   useEffect(() => {
-    axios.get("http://localhost:5000/right?_embed=children").then((res) => {
+    axios.get("/ajax/right?_embed=children").then((res) => {
       // console.log(res.data);
       setTreeData(res.data)
     })
@@ -36,7 +36,7 @@ export default function RightRoleList() {
   }
   const deleteMethod = (item) => {
     setDataSource(dataSource.filter((value) => value.id !== item.id))
-    axios.delete(`http://localhost:5000/roles/${item.id}`)
+    axios.delete(`/ajax/roles/${item.id}`)
   }
   //权限对话框处理
   const handleOk = (item) => {
@@ -58,7 +58,7 @@ export default function RightRoleList() {
     localStorage.setItem("token", JSON.stringify(user))
     // 后端数据
     console.log(currentRights);
-    axios.patch(`http://localhost:5000/roles/${currentId}`, {
+    axios.patch(`/ajax/roles/${currentId}`, {
       rights: currentRights
     }).then(res => {
       console.log(res);

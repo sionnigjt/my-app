@@ -7,8 +7,9 @@ import axios from 'axios';
 export default function RightManageList() {
   const [dataSource, setdataSource] = useState()
   useEffect(() => {
-    axios.get("http://localhost:5000/right?_embed=children").then((res) => {
+    axios.get("/ajax/right?_embed=children").then((res) => {
       setdataSource(res.data)
+      console.log(res.data);
     })
   }, [])
   const { confirm } = Modal;
@@ -27,7 +28,7 @@ export default function RightManageList() {
     console.log(item);
     //本地删除,后端删除
     setdataSource(dataSource.filter((value) => value.id !== item.id))
-    axios.delete(`http://localhost:5000/right/${item.id}`)
+    axios.delete(`/ajax/right/${item.id}`)
   }
   const SwitchChange = (item) => {
     //页面更新
@@ -39,12 +40,12 @@ export default function RightManageList() {
     })
     const Patchdatas = () => {
       if (item.grade === 1) {
-        axios.patch(`http://localhost:5000/right/${item.id}`, { pagePermission: item.pagePermission }).then(function (response) {
+        axios.patch(`/ajax/right/${item.id}`, { pagePermission: item.pagePermission }).then(function (response) {
           console.log(response);
         }).catch(e => { console.log(e); })
       }
       else {
-        axios.patch(`http://localhost:5000/children/${item.id}`, { pagePermission: item.pagePermission }).then(function (response) {
+        axios.patch(`/ajax/children/${item.id}`, { pagePermission: item.pagePermission }).then(function (response) {
           console.log(response);
         })
       }

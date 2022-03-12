@@ -26,7 +26,7 @@ export default function Userlist() {
             "3": "editor"
         }
         let { roleId, region, username } = JSON.parse(localStorage.getItem('token'))
-        axios.get('http://localhost:5000/users?_expand=role').then((res) => {
+        axios.get('/ajax/users?_expand=role').then((res) => {
             const list = res.data
             setdataSource(roleObj[roleId] === "superadmin" ? list : [
                 //过滤不在同一个区域的,权限大于等于的
@@ -36,12 +36,12 @@ export default function Userlist() {
         })
     }, [])
     useEffect(() => {
-        axios.get('http://localhost:5000/roles').then((res) => {
+        axios.get('/ajax/roles').then((res) => {
             setroleList(res.data)
         })
     }, [])
     useEffect(() => {
-        axios.get('http://localhost:5000/regions').then((res) => {
+        axios.get('/ajax/regions').then((res) => {
             setregionList(res.data)
         })
     }, [])
@@ -60,7 +60,7 @@ export default function Userlist() {
     const deleteMethod = (item) => {
         //本地删除,后端删除
         setdataSource(dataSource.filter((value) => value.id !== item.id))
-        axios.delete(`http://localhost:5000/users/${item.id}`)
+        axios.delete(`/ajax/users/${item.id}`)
     }
     const SwitchChange = (item) => {
         //页面更新
@@ -71,7 +71,7 @@ export default function Userlist() {
             setTimeout(resolve, 500, item)
         })
         const Patchdatas = () => {
-            axios.patch(`http://localhost:5000/users/${item.id}`, { "roleSate": item.roleSate }).then(function (response) {
+            axios.patch(`/ajax/users/${item.id}`, { "roleSate": item.roleSate }).then(function (response) {
                 // console.log(response);
             }).catch(e => { console.log(e); })
 
@@ -84,7 +84,7 @@ export default function Userlist() {
         AddFromRef.current.validateFields().then(value => {
             setisAddVisible(false)
 
-            axios.post("http://localhost:5000/users", {
+            axios.post("/ajax/users", {
                 ...value,
                 "roleSate": true,
                 "default": false,
@@ -111,7 +111,7 @@ export default function Userlist() {
             }))
             //更新后端数据
             console.log();
-            axios.patch(`http://localhost:5000/users/${currentUser.id}`, { ...value }).then(res => { console.log(res); })
+            axios.patch(`/ajax/users/${currentUser.id}`, { ...value }).then(res => { console.log(res); })
                 .catch(e => { console.log(e); })
 
         })
