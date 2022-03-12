@@ -11,15 +11,59 @@ import {
   MoreOutlined
 } from '@ant-design/icons';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios'
 
 const { Sider } = Layout;
 
-//模拟数组结构
-
+//模拟数组结构,占据位置放置重绘,删除会导致刷新慢
+let data = [
+  {
+    "id": 1,
+    "key": "/home",
+    "title": "首页",
+    "pagePermission": 1,
+    "grade": 1,
+    "children": []
+  },
+  {
+    "id": 2,
+    "key": "/user-manage",
+    "title": "用户管理",
+    "pagePermission": 1,
+    "grade": 1,
+  },
+  {
+    "id": 7,
+    "key": "/right-manage",
+    "title": "权限管理",
+    "pagePermission": 1,
+    "grade": 1,
+  },
+  {
+    "id": 14,
+    "key": "/news-manage",
+    "title": "新闻管理管理",
+    "pagePermission": 1,
+    "grade": 1,
+  },
+  {
+    "id": 21,
+    "key": "/audit-manage",
+    "title": "审核管理",
+    "pagePermission": 1,
+    "grade": 1,
+  },
+  {
+    "id": 24,
+    "key": "/publish-manage/",
+    "title": "发布管理",
+    "pagePermission": 1,
+    "grade": 1,
+  }
+]
 export default function Sidemenu() {
-  const [menuList, setMenuList] = useState([])
+  const [menuList, setMenuList] = useState(data)
   const navigate = useNavigate()
   const iconMap = {
     "/home": <HomeOutlined />,
@@ -53,17 +97,20 @@ export default function Sidemenu() {
           {renderMenu(Item.children)}
         </SubMenu>
       }
-      else return checkPagePermission(Item) && <Menu.Item key={Item.id} icon={iconMap[Item.key]} onClick={() => {
+      else return checkPagePermission(Item) && <Menu.Item key={Item.key} icon={iconMap[Item.key]} onClick={() => {
         navigate(Item.key)
       }}>{Item.title}</Menu.Item>
     })
   }
+  const { pathname } = useLocation();
+  const openKeys = '/' + pathname.split("/")[1]
+  console.log(pathname, openKeys);
   return (
     <Sider trigger={null} collapsed={false}  >
       <div style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>
         <div className="logo" >新闻发布系统</div>
         <div style={{ flex: 1, overflow: 'auto' }}>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu theme="dark" mode="inline" selectedKeys={[pathname]} defaultOpenKeys={[openKeys]}>
             {renderMenu(menuList)}
           </Menu>
         </div>

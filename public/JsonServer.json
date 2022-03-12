@@ -93,7 +93,7 @@
       "id": 10,
       "title": "撰写新闻",
       "rightId": 14,
-      "key": "news-manage/add",
+      "key": "/news-manage/add",
       "pagePermission": 1,
       "grade": 2
     },
@@ -102,6 +102,14 @@
       "title": "草稿箱",
       "rightId": 14,
       "key": "/news-manage/draft",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 12,
+      "title": "新闻分类",
+      "rightId": 14,
+      "key": "/news-manage/category",
       "pagePermission": 1,
       "grade": 2
     },
@@ -136,11 +144,8 @@
       "roleName": "超级管理员",
       "roleType": 1,
       "rights": [
-        "/home",
         "/publish-manage/",
         "/publish-manage/unpublished",
-        "/news-manage",
-        "/user-manage",
         "/user-manage/add",
         "/user-manage/delete",
         "/user-manage/update",
@@ -148,12 +153,19 @@
         "/right-manage",
         "/right-manage/role/list",
         "/right-manage/right/list",
-        "/audit-manage",
         "/audit-manage/list",
         "news-manage/add",
         "/publish-manage/published",
         " /news-manage/draft",
-        "/news-manage/draft"
+        "/news-manage/draft",
+        "news-manage/list",
+        "news-manage/category",
+        "/user-manage",
+        "/audit-manage",
+        "/news-manage/add",
+        "/news-manage/category",
+        "/home",
+        "/news-manage"
       ]
     },
     {
@@ -355,6 +367,48 @@
       "view": 0,
       "publishTime": 0,
       "id": 2
+    },
+    {
+      "newTitle": "efghefgh",
+      "categoryId": 2,
+      "content": "<p>qwfgqwgqwg</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "createTime": 1647052772550,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 3
+    },
+    {
+      "newTitle": "aas",
+      "categoryId": 1,
+      "content": "<p>rewgwegh</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "createTime": 1647068563386,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 4
+    },
+    {
+      "newTitle": "qfwqwf",
+      "categoryId": 2,
+      "content": "<p>qwfqwf</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "createTime": 1647068628815,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 5
     }
   ]
 }

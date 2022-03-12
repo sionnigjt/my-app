@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, PageHeader, Steps, Form, Input, Select, message } from 'antd';
+import { Button, PageHeader, Steps, Form, Input, Select, message, notification } from 'antd';
 import style from './WriteNews.module.css'
 import axios from 'axios'
 import NewsEditor from '../../../compents/News/NewsEditor';
@@ -58,7 +58,13 @@ export default function WriteNews() {
             "view": 0,
             "publishTime": 0
         }).then(res => {
-            Navigate('/news-manage/draft')
+            Navigate(auditState === 0 ? '/news-manage/draft' : '/audit-manage/list')
+            notification.info({
+                message: `通知`,
+                description:
+                    `你可以到${auditState === 0 ? '审核箱' : '审核列表'}中查看您的新闻`,
+                bottomRight: "bottomRight"
+            });
         })
     }
     return (
@@ -118,7 +124,7 @@ export default function WriteNews() {
                         setNewsContent(value)
                     }}></NewsEditor>
                 </div>
-                <div className={current === 2 ? "" : style.hidden}> 333</div>
+                <div className={current === 2 ? "" : style.hidden}> </div>
 
             </div>
             <div style={{ marginTop: "50px" }}>

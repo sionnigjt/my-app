@@ -122,4 +122,4 @@ const UserForm = forwardRef((props, ref) => {
         </Form>
     )
 })
-export default UserForm
+export default React.memo(UserForm) 

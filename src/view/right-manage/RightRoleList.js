@@ -52,6 +52,10 @@ export default function RightRoleList() {
       }
       return item
     }))
+    //更新token
+    let user = JSON.parse(localStorage.getItem('token'))
+    user.role.rights = currentRights
+    localStorage.setItem("token", JSON.stringify(user))
     // 后端数据
     console.log(currentRights);
     axios.patch(`http://localhost:5000/roles/${currentId}`, {
