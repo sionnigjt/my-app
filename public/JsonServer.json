@@ -90,6 +90,22 @@
       "grade": 2
     },
     {
+      "id": 10,
+      "title": "撰写新闻",
+      "rightId": 14,
+      "key": "news-manage/add",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 11,
+      "title": "草稿箱",
+      "rightId": 14,
+      "key": "/news-manage/draft",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
       "id": 23,
       "title": "审核列表",
       "rightId": 21,
@@ -123,7 +139,6 @@
         "/home",
         "/publish-manage/",
         "/publish-manage/unpublished",
-        "/publish-manage/published",
         "/news-manage",
         "/user-manage",
         "/user-manage/add",
@@ -134,7 +149,11 @@
         "/right-manage/role/list",
         "/right-manage/right/list",
         "/audit-manage",
-        "/audit-manage/list"
+        "/audit-manage/list",
+        "news-manage/add",
+        "/publish-manage/published",
+        " /news-manage/draft",
+        "/news-manage/draft"
       ]
     },
     {
@@ -142,7 +161,6 @@
       "roleName": "区域管理员",
       "roleType": 1,
       "rights": [
-        "/user-manage/update",
         "/news-manage",
         "/audit-manage",
         "/audit-manage/list",
@@ -150,10 +168,10 @@
         "/publish-manage/unpublished",
         "/publish-manage/published",
         "/home",
-        "/user-manage/delete",
-        "/user-manage/add",
         "/user-manage",
-        "/user-manage/list"
+        "/user-manage/list",
+        "/right-manage",
+        "/right-manage/role/list"
       ]
     },
     {
@@ -167,7 +185,10 @@
         "/publish-manage/",
         "/publish-manage/unpublished",
         "/publish-manage/published",
-        "/home"
+        "/home",
+        "/user-manage/list",
+        "/right-manage",
+        "/user-manage"
       ]
     }
   ],
@@ -178,7 +199,7 @@
       "password": 123,
       "roleSate": true,
       "default": true,
-      "region": "",
+      "region": "全球",
       "roleId": 1
     },
     {
@@ -202,20 +223,11 @@
     {
       "username": "周面筋",
       "password": "123",
-      "region": 7,
+      "region": "南美洲",
       "roleId": 2,
       "roleSate": false,
       "default": false,
       "id": 6
-    },
-    {
-      "username": "21231",
-      "password": "12312",
-      "region": 6,
-      "roleId": 2,
-      "roleSate": true,
-      "default": false,
-      "id": 8
     },
     {
       "username": "ewrwer",
@@ -234,6 +246,33 @@
       "roleSate": true,
       "default": false,
       "id": 10
+    },
+    {
+      "username": "123123",
+      "password": "1231",
+      "region": "大洋洲",
+      "roleId": 3,
+      "roleSate": true,
+      "default": false,
+      "id": 11
+    },
+    {
+      "username": "1231241",
+      "password": "1241",
+      "region": "南极洲",
+      "roleId": 3,
+      "roleSate": true,
+      "default": false,
+      "id": 12
+    },
+    {
+      "username": "1231",
+      "password": "414124",
+      "region": "南极洲",
+      "roleId": 3,
+      "roleSate": true,
+      "default": false,
+      "id": 13
     }
   ],
   "regions": [
@@ -264,6 +303,58 @@
     {
       "id": 7,
       "value": "南极洲"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "title": "实事新闻"
+    },
+    {
+      "id": 2,
+      "title": "环球经济"
+    },
+    {
+      "id": 3,
+      "title": "科学技术"
+    },
+    {
+      "id": 1,
+      "title": "世界体育"
+    },
+    {
+      "id": 1,
+      "title": "生活理财"
+    }
+  ],
+  "news": [
+    {
+      "title": "内容标题",
+      "cateoryId": 3,
+      "content": "<p>hi</p>",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 2,
+      "createTime": 1647050413536,
+      "star": 100,
+      "view": 2005,
+      "id": 1,
+      "publishTime": 1647050429448
+    },
+    {
+      "newTitle": "test",
+      "categoryId": 1,
+      "content": "<p>content</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "createTime": 1647052622510,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 2
     }
   ]
 }

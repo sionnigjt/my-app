@@ -52,7 +52,8 @@ export default function RightRoleList() {
       }
       return item
     }))
-    //后端数据
+    // 后端数据
+    console.log(currentRights);
     axios.patch(`http://localhost:5000/roles/${currentId}`, {
       rights: currentRights
     }).then(res => {
@@ -103,11 +104,12 @@ export default function RightRoleList() {
         <Tree
           // onSelect={onSelect}
           onCheck={(checkedKeys) => {
-            setCurrentRights(checkedKeys)
+            setCurrentRights(checkedKeys.checked)
           }}
           checkable
           checkedKeys={currentRights}
           treeData={treeData}
+          checkStrictly={true}
         />
       </Modal>
     </div>

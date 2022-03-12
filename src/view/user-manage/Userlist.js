@@ -17,9 +17,22 @@ export default function Userlist() {
     const ChangeFormRef = useRef(null)
     const [isUpdateDisabled, setisUpdateDisabled] = useState(false)
     const [currentUser, setcurrentUser] = useState(null)
+
+   
     useEffect(() => {
+        let roleObj = {
+            "1": "superadmin",
+            "2": "admin",
+            "3": "editor"
+        }
+        let { roleId, region, username } = JSON.parse(localStorage.getItem('token'))
         axios.get('http://localhost:5000/users?_expand=role').then((res) => {
-            setdataSource(res.data)
+            const list = res.data
+            setdataSource(roleObj[roleId] === "superadmin" ? list : [
+                //过滤不在同一个区域的,权限大于等于的
+                ...list.filter(item => item.username === username || (item.region === region && roleObj[item.roleId] === "editor")),
+
+            ])
         })
     }, [])
     useEffect(() => {
@@ -52,7 +65,6 @@ export default function Userlist() {
     const SwitchChange = (item) => {
         //页面更新
         item.roleSate = !item.roleSate
-        console.log(dataSource);
         setdataSource([...dataSource])
         //后端更新:等滑块动作完成后在更新,并且这里这里使用节流和防抖方法
         let sleep = (item) => new Promise((resolve) => {
@@ -60,7 +72,7 @@ export default function Userlist() {
         })
         const Patchdatas = () => {
             axios.patch(`http://localhost:5000/users/${item.id}`, { "roleSate": item.roleSate }).then(function (response) {
-                console.log(response);
+                // console.log(response);
             }).catch(e => { console.log(e); })
 
         }
@@ -71,14 +83,13 @@ export default function Userlist() {
     const AddFromOK = () => {
         AddFromRef.current.validateFields().then(value => {
             setisAddVisible(false)
-            console.log(value);
+
             axios.post("http://localhost:5000/users", {
                 ...value,
                 "roleSate": true,
                 "default": false,
             })
                 .then(res => {
-                    console.log(res.data);
                     setdataSource([...dataSource, {
                         ...res.data,
                         role: roleList.filter(item => item.id === value.roleId)[0]
@@ -89,7 +100,6 @@ export default function Userlist() {
     const ChangeFormOk = () => {
         SetisChangeVisible(false)
         ChangeFormRef.current.validateFields().then(value => {
-            console.log(value);
             setdataSource(dataSource.map(item => {
                 if (item.id === currentUser.id) {
                     return {
@@ -99,6 +109,11 @@ export default function Userlist() {
                 }
                 return item
             }))
+            //更新后端数据
+            console.log();
+            axios.patch(`http://localhost:5000/users/${currentUser.id}`, { ...value }).then(res => { console.log(res); })
+                .catch(e => { console.log(e); })
+
         })
     }
     const handleUpdate = (item) => {
@@ -191,7 +206,7 @@ export default function Userlist() {
             >
                 {/* 注意:这里使用高阶函数forwardRef从子级组件取值 */}
                 <UserForm regionList={regionList} roleList={roleList}
-                    ref={AddFromRef}></UserForm>
+                    ref={AddFromRef} ></UserForm>
             </Modal>
             <Modal
                 visible={isChangeVisible}
@@ -207,7 +222,7 @@ export default function Userlist() {
             >
                 {/* 注意:这里使用高阶函数forwardRef从子级组件取值 */}
                 <UserForm regionList={regionList} roleList={roleList}
-                    ref={ChangeFormRef} isUpdateDisabled={isUpdateDisabled}></UserForm>
+                    ref={ChangeFormRef} isUpdateDisabled={isUpdateDisabled} isUpdata={true}></UserForm>
             </Modal>
         </div >
     )

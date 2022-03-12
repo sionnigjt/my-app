@@ -53,7 +53,7 @@ export default function Sidemenu() {
           {renderMenu(Item.children)}
         </SubMenu>
       }
-      else return checkPagePermission(Item) && <Menu.Item key={Item.key} icon={iconMap[Item.key]} onClick={() => {
+      else return checkPagePermission(Item) && <Menu.Item key={Item.id} icon={iconMap[Item.key]} onClick={() => {
         navigate(Item.key)
       }}>{Item.title}</Menu.Item>
     })

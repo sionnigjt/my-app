@@ -9,6 +9,9 @@ import { Layout } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 import RightManageList from '../right-manage/RightManageList'
 import RightRoleList from '../right-manage/RightRoleList'
+import WriteNews from '../News/WriteNews/WriteNews'
+import DraftBox from '../News/DraftBox/DraftBox'
+
 export default function Sandbox() {
     return (
         <Layout>
@@ -27,6 +30,8 @@ export default function Sandbox() {
                         <Route path='/user-manage/list' element={<Userlist></Userlist>}></Route>
                         <Route path='/right-manage/right/list' element={<RightManageList></RightManageList>}></Route>
                         <Route path='/right-manage/role/list' element={<RightRoleList></RightRoleList>}></Route>
+                        <Route path='/news-manage/add' element={<WriteNews></WriteNews>}></Route>
+                        <Route path='/news-manage/draft' element={<DraftBox></DraftBox>}></Route>
                         <Route path='*' element={<Home />}></Route>
                     </Routes>
                 </Content>

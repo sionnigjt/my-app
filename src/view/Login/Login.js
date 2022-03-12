@@ -9,10 +9,9 @@ import { useNavigate } from 'react-router-dom'
 export default function Login() {
   const Navigate = useNavigate()
   const onFinish = (value) => {
-    console.log("hi");
+    //json_server受限 没法使用post给后端验证返回token
     axios.get(`http://localhost:5000/users?username=${value.username}&password=${value.password}&roleSate=true&_expand=role`)
       .then(res => {
-        console.log(res);
         localStorage.setItem("token", JSON.stringify(res.data[0]))
         Navigate('/home')
       })
