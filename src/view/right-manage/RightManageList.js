@@ -27,8 +27,16 @@ export default function RightManageList() {
   const deleteMethod = (item) => {
     console.log(item);
     //本地删除,后端删除
-    setdataSource(dataSource.filter((value) => value.id !== item.id))
-    axios.delete(`/ajax/right/${item.id}`)
+    if (item.grade === 1) {
+      setdataSource(dataSource.filter((value) => value.id === item.rightId))
+      axios.delete(`/ajax/right/${item.id}`)
+    }
+    else {
+      let list = dataSource.filter((value) => value.id !== item.id)
+      list[0].children = list[0].children.filter(value => value.id !== item.id)
+      setdataSource([...dataSource])
+      axios.delete(`/ajax/children/${item.id}`)
+    }
   }
   const SwitchChange = (item) => {
     //页面更新

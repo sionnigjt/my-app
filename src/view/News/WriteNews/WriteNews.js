@@ -51,8 +51,9 @@ export default function WriteNews() {
             "region": userInfo.region,
             "author": userInfo.username,
             "roleId": userInfo.roleId,
-            //0:草稿箱 1:待审核 2:通过 3:拒绝
+            //0:草稿箱 1:待审核 2:拒绝 3:通过
             "auditState": auditState,
+            "pubilshState": 0,
             "createTime": Date.now(),
             "star": 0,
             "view": 0,

@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Button, Table, Tag, Modal, Popover, Switch } from 'antd'
-import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from "@ant-design/icons"
-
+import { Button, Table, Modal } from 'antd'
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, UploadOutlined } from "@ant-design/icons"
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 export default function DraftBox() {
   const [dataSource, setdataSource] = useState()
   const { username } = JSON.parse(localStorage.getItem('token'))
+  const Navigate = useNavigate()
   useEffect(() => {
     axios.get(`/ajax/news?author=${username}&auditState=0&_expand=category`).then((res) => {
       setdataSource(res.data)
@@ -28,7 +30,7 @@ export default function DraftBox() {
     console.log(item);
     //本地删除,后端删除
     setdataSource(dataSource.filter((value) => value.id !== item.id))
-    axios.delete(`/ajax/right/${item.id}`)
+    axios.delete(`/ajax/news/${item.id}`)
   }
 
   const columns = [
@@ -42,6 +44,9 @@ export default function DraftBox() {
     {
       title: '新闻标题',
       dataIndex: 'title',
+      render: (dataIndex, item) => {
+        return <Link to={`../news-manage/preview/${item.id}`} >{dataIndex}</Link>
+      }
     },
     {
       title: '作者',
@@ -61,9 +66,14 @@ export default function DraftBox() {
         return <div >
           <Button danger shape="circle" icon={<DeleteOutlined></DeleteOutlined>}
             onClick={() => confirmMethod(item)}></Button>
-         
-            <Button type='primary' shape='circle' icon={<EditOutlined />} style={{ padding: '0 0 0 0.5em', margin: '0 0 0 0.3em' }}
-             >  </Button>
+          <Button shape='circle' icon={<EditOutlined />} style={{ padding: '0 0 0 0.5em', margin: '0 0 0 0.3em' }}
+            onClick={
+              () => {
+                navigator('/home')
+              }
+            } >  </Button>
+          <Button type='primary' shape='circle' icon={<UploadOutlined />} style={{ padding: '0 0 0 0.5em', margin: '0 0 0 0.3em' }}
+          >  </Button>
         </div>
       }
     }

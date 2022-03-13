@@ -32,6 +32,37 @@ let data = [
     "title": "用户管理",
     "pagePermission": 1,
     "grade": 1,
+    "children": [
+      {
+        "id": 3,
+        "title": "添加用户",
+        "rightId": 2,
+        "key": "/user-manage/add",
+        "grade": 2
+      },
+      {
+        "id": 4,
+        "title": "删除用户",
+        "rightId": 2,
+        "key": "/user-manage/delete",
+        "grade": 2
+      },
+      {
+        "id": 5,
+        "title": "修改用户",
+        "rightId": 2,
+        "key": "/user-manage/update",
+        "grade": 2
+      },
+      {
+        "id": 6,
+        "title": "用户列表",
+        "rightId": 2,
+        "key": "/user-manage/list",
+        "pagePermission": 1,
+        "grade": 2
+      }
+    ]
   },
   {
     "id": 7,
@@ -39,6 +70,24 @@ let data = [
     "title": "权限管理",
     "pagePermission": 1,
     "grade": 1,
+    "children": [
+      {
+        "id": 8,
+        "title": "角色列表",
+        "rightId": 7,
+        "key": "/right-manage/role/list",
+        "pagePermission": 1,
+        "grade": 2
+      },
+      {
+        "id": 9,
+        "title": "权权限色",
+        "rightId": 7,
+        "key": "/right-manage/right/list",
+        "pagePermission": 1,
+        "grade": 2
+      }
+    ]
   },
   {
     "id": 14,
@@ -46,6 +95,32 @@ let data = [
     "title": "新闻管理管理",
     "pagePermission": 1,
     "grade": 1,
+    "children": [
+      {
+        "id": 10,
+        "title": "撰写新闻",
+        "rightId": 14,
+        "key": "/news-manage/add",
+        "pagePermission": 1,
+        "grade": 2
+      },
+      {
+        "id": 11,
+        "title": "草稿箱",
+        "rightId": 14,
+        "key": "/news-manage/draft",
+        "pagePermission": 1,
+        "grade": 2
+      },
+      {
+        "id": 12,
+        "title": "新闻分类",
+        "rightId": 14,
+        "key": "/news-manage/category",
+        "pagePermission": 1,
+        "grade": 2
+      }
+    ]
   },
   {
     "id": 21,
@@ -53,6 +128,16 @@ let data = [
     "title": "审核管理",
     "pagePermission": 1,
     "grade": 1,
+    "children": [
+      {
+        "id": 23,
+        "title": "审核列表",
+        "rightId": 21,
+        "key": "/audit-manage/list",
+        "pagePermission": 1,
+        "grade": 2
+      }
+    ]
   },
   {
     "id": 24,
@@ -60,6 +145,24 @@ let data = [
     "title": "发布管理",
     "pagePermission": 1,
     "grade": 1,
+    "children": [
+      {
+        "id": 25,
+        "title": "待发布",
+        "rightId": 24,
+        "key": "/publish-manage/unpublished",
+        "pagePermission": 1,
+        "grade": 2
+      },
+      {
+        "id": 27,
+        "title": "已发布",
+        "rightId": 24,
+        "key": "/publish-manage/published",
+        "pagePermission": 1,
+        "grade": 2
+      }
+    ]
   }
 ]
 export default function Sidemenu() {
@@ -74,12 +177,11 @@ export default function Sidemenu() {
     "/news-manage": <BarsOutlined />,
     "/audit-manage": <DesktopOutlined />,
     "/audit-manage/list": <DesktopOutlined />,
-    "/publish-manage": <MoreOutlined />,
-    "/audit-manage/unpublished": <MoreOutlined />,
-    "/audit-manage/published": <MoreOutlined />,
+    // "/publish-manage": <MoreOutlined />,
   }
+  //请求数据
   useEffect(() => {
-    axios.get("http://localhost:5000/right?_embed=children").then((resolve) => {
+    axios.get("/ajax/right?_embed=children").then((resolve) => {
       // console.log(resolve.data);
       setMenuList(resolve.data)
     })
@@ -104,7 +206,7 @@ export default function Sidemenu() {
   }
   const { pathname } = useLocation();
   const openKeys = '/' + pathname.split("/")[1]
-  console.log(pathname, openKeys);
+  // console.log(pathname, openKeys);
   return (
     <Sider trigger={null} collapsed={false}  >
       <div style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>

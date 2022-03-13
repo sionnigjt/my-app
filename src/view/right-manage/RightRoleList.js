@@ -39,7 +39,7 @@ export default function RightRoleList() {
     axios.delete(`/ajax/roles/${item.id}`)
   }
   //权限对话框处理
-  const handleOk = (item) => {
+  const handleOk = () => {
     setIsModalVisible(false);
     //同步数据
     //本地的dataSource
@@ -52,10 +52,13 @@ export default function RightRoleList() {
       }
       return item
     }))
+    console.log();
     //更新token
     let user = JSON.parse(localStorage.getItem('token'))
-    user.role.rights = currentRights
-    localStorage.setItem("token", JSON.stringify(user))
+    if (user.roleId === currentId) {
+      user.role.rights = currentRights
+      localStorage.setItem("token", JSON.stringify(user))
+    }
     // 后端数据
     console.log(currentRights);
     axios.patch(`/ajax/roles/${currentId}`, {

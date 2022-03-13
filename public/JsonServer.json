@@ -37,7 +37,7 @@
     },
     {
       "id": 24,
-      "key": "/publish-manage/",
+      "key": "/publish-manage",
       "title": "发布管理",
       "pagePermission": 1,
       "grade": 1
@@ -114,6 +114,14 @@
       "grade": 2
     },
     {
+      "id": 13,
+      "title": "新闻预览",
+      "rightId": 14,
+      "key": "/news-manage/preview/:id",
+      "routePermission": 1,
+      "grade": 2
+    },
+    {
       "id": 23,
       "title": "审核列表",
       "rightId": 21,
@@ -145,7 +153,6 @@
       "roleType": 1,
       "rights": [
         "/publish-manage/",
-        "/publish-manage/unpublished",
         "/user-manage/add",
         "/user-manage/delete",
         "/user-manage/update",
@@ -153,19 +160,23 @@
         "/right-manage",
         "/right-manage/role/list",
         "/right-manage/right/list",
-        "/audit-manage/list",
         "news-manage/add",
         "/publish-manage/published",
-        " /news-manage/draft",
-        "/news-manage/draft",
         "news-manage/list",
         "news-manage/category",
         "/user-manage",
-        "/audit-manage",
-        "/news-manage/add",
-        "/news-manage/category",
         "/home",
-        "/news-manage"
+        "/audit-manage",
+        "/audit-manage/list",
+        "/publish-manage",
+        "/publish-manage/unpublished",
+        "/publish-manage/published",
+        "/news-manage",
+        "/news-manage/add",
+        "/news-manage/draft",
+        "/news-manage/category",
+        "/news-manage/preview",
+        "/news-manage/preview/:id"
       ]
     },
     {
@@ -173,8 +184,6 @@
       "roleName": "区域管理员",
       "roleType": 1,
       "rights": [
-        "/news-manage",
-        "/audit-manage",
         "/audit-manage/list",
         "/publish-manage/",
         "/publish-manage/unpublished",
@@ -182,8 +191,15 @@
         "/home",
         "/user-manage",
         "/user-manage/list",
+        "/news-manage/add",
+        "/news-manage/draft",
+        "/news-manage/category",
+        "/user-manage/add",
         "/right-manage",
-        "/right-manage/role/list"
+        "/right-manage/role/list",
+        "/audit-manage",
+        "/news-manage",
+        "/publish-manage"
       ]
     },
     {
@@ -200,7 +216,10 @@
         "/home",
         "/user-manage/list",
         "/right-manage",
-        "/user-manage"
+        "/user-manage",
+        "/news-manage/add",
+        "/news-manage/draft",
+        "/news-manage/category"
       ]
     }
   ],
@@ -357,6 +376,7 @@
       "author": "admin",
       "roleId": 1,
       "auditState": 2,
+      "pubilshState": 0,
       "createTime": 1647050413536,
       "star": 100,
       "view": 2005,
@@ -364,18 +384,34 @@
       "publishTime": 1647050429448
     },
     {
-      "title": "fristTitle",
+      "title": "请问热情",
       "categoryId": 1,
-      "content": "<h1><span style=\"font-size: 24px;\"><strong>第一个内容</strong></span></h1>\n<p>撒陈法拉双发飞机啊</p>\n",
+      "content": "<p>1241234</p>\n",
       "region": "全球",
       "author": "admin",
       "roleId": 1,
       "auditState": 0,
-      "createTime": 1647087607199,
+      "pubilshState": 0,
+      "createTime": 1647136319500,
       "star": 0,
       "view": 0,
       "publishTime": 0,
       "id": 2
+    },
+    {
+      "title": "wfqwf",
+      "categoryId": 2,
+      "content": "<p>qwtTWETGEW</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "pubilshState": 0,
+      "createTime": 1647159103442,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 3
     }
   ]
 }
