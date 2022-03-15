@@ -8,7 +8,6 @@ import {
   BarsOutlined,
   HomeOutlined,
   DesktopOutlined,
-  MoreOutlined
 } from '@ant-design/icons';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -191,7 +190,11 @@ export default function Sidemenu() {
   const checkPagePermission = function (item) {
     return item.pagePermission === 1 && rights.includes(item.key)
   }
-
+  const checkPath = (path1, path2) => {
+    if (path1 === "/" && path2 === '/') {
+      navigate('/home')
+    }
+  }
   const renderMenu = (menuList) => {
     return menuList.map(Item => {
       if (Item.children?.length > 0 && checkPagePermission(Item)) {
@@ -207,6 +210,7 @@ export default function Sidemenu() {
   const { pathname } = useLocation();
   const openKeys = '/' + pathname.split("/")[1]
   // console.log(pathname, openKeys);
+  checkPath(pathname, openKeys)
   return (
     <Sider trigger={null} collapsed={false}  >
       <div style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>

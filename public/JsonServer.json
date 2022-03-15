@@ -122,6 +122,14 @@
       "grade": 2
     },
     {
+      "id": 14,
+      "title": "新闻更新",
+      "rightId": 14,
+      "key": "/news-manage/update/:id",
+      "routePermission": 1,
+      "grade": 2
+    },
+    {
       "id": 23,
       "title": "审核列表",
       "rightId": 21,
@@ -176,7 +184,8 @@
         "/news-manage/draft",
         "/news-manage/category",
         "/news-manage/preview",
-        "/news-manage/preview/:id"
+        "/news-manage/preview/:id",
+        "/news-manage/update/:id"
       ]
     },
     {
@@ -370,7 +379,7 @@
   "news": [
     {
       "title": "内容标题",
-      "cateoryId": 3,
+      "categoryId": 3,
       "content": "<p>hi</p>",
       "region": "全球",
       "author": "admin",
@@ -390,7 +399,7 @@
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 0,
+      "auditState": 1,
       "pubilshState": 0,
       "createTime": 1647136319500,
       "star": 0,
@@ -405,13 +414,43 @@
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 0,
+      "auditState": 1,
       "pubilshState": 0,
       "createTime": 1647159103442,
       "star": 0,
       "view": 0,
       "publishTime": 0,
       "id": 3
+    },
+    {
+      "title": "wrq",
+      "categoryId": 1,
+      "content": "<p>qwr</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 1,
+      "pubilshState": 0,
+      "createTime": 1647332839347,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 4
+    },
+    {
+      "title": "afqwf",
+      "categoryId": 1,
+      "content": "<p>qwtfgqw</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "pubilshState": 0,
+      "createTime": 1647333136465,
+      "star": 0,
+      "view": 0,
+      "publishTime": 0,
+      "id": 5
     }
   ]
 }

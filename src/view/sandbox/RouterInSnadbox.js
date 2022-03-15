@@ -12,9 +12,11 @@ import NotFound from '../../compents/404/NotFound'
 import Published from '../../view/Publish/published/Published'
 import Uppublished from '../../view/Publish/unpublished/Unpublished'
 import NewsPreview from '../../compents/News/NewsPreview'
+import NewsUpdate from '../News/NewsUpdate/NewsUpdate'
 import axios from 'axios'
 export default function RouterInSnadbox() {
     const routerMap = {
+        '': <Home />,
         '/home': <Home />,
         '/user-manage/list': <Userlist></Userlist>,
         '/right-manage/right/list': < RightManageList ></RightManageList>,
@@ -23,6 +25,7 @@ export default function RouterInSnadbox() {
         '/news-manage/draft': <DraftBox></DraftBox>,
         '/news-manage/category': <CategoryNews></CategoryNews>,
         '/news-manage/preview/:id': <NewsPreview></NewsPreview>,
+        '/news-manage/update/:id': <NewsUpdate></NewsUpdate>,
         '/audit-manage/list': <AuditList></AuditList>,
         '/publish-manage/unpublished': <Uppublished></Uppublished>,
         '/publish-manage/published': <Published></Published>,
@@ -44,14 +47,6 @@ export default function RouterInSnadbox() {
         return rights.includes(item.key) && (item.routePermission === 1 || item.pagePermission === 1)
     }
     const createRoute = (routerMap) => {
-        // let routerKeys = Object.keys(routerMap)
-        // return routerKeys.map(index => {
-        //     //拦截或者检查路由
-        //     if (checkRoute(index)) {
-        //         return <Route path={index} element={routerMap[index]} key={index}></Route>
-        //     }
-        //     else return <Route path={index} element={<NotFound />} key={index}></Route>
-        // })
         return RouteList.map(item => {
             if (checkRoute(item)) {
                 return <Route path={item.key} element={routerMap[item.key]} key={item.id}></Route>

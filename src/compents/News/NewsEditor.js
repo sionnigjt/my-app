@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw, ContentState } from 'draft-js'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-
+import htmlToDraft from 'html-to-draftjs';
 
 export default function NewsEditor(props) {
     const [editorState, seteditorState] = useState("")
+    useEffect(() => {
+        const html = props.content
+        if (html !== undefined) {
+            const contentBlock = htmlToDraft(html);
+            if (contentBlock) {
+                const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+                const editorState = EditorState.createWithContent(contentState);
+                seteditorState(editorState)
+            }
+        }
+      
+    }, [props.content])
     return (
         <div>
             <Editor

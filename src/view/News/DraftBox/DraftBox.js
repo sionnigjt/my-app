@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Button, Table, Modal } from 'antd'
+import { Button, Table, Modal, notification } from 'antd'
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, UploadOutlined } from "@ant-design/icons"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -32,7 +32,19 @@ export default function DraftBox() {
     setdataSource(dataSource.filter((value) => value.id !== item.id))
     axios.delete(`/ajax/news/${item.id}`)
   }
-
+  const handleCheckUpload = (id) => {
+    axios.patch(`/ajax/news/${id}`, {
+      'auditState': 1
+    }).then(res => {
+      Navigate(`/audit-manage/list`)
+      notification.info({
+        message: `通知`,
+        description:
+          `你可以到审核列表中查看您的新闻`,
+        placement: "bottomRight"
+      });
+    })
+  }
   const columns = [
     {
       title: 'ID',
@@ -59,8 +71,8 @@ export default function DraftBox() {
       render: (category) => {
         return category.title
       }
-
-    }, {
+    },
+    {
       title: '操作',
       render: (item) => {
         return <div >
@@ -69,11 +81,12 @@ export default function DraftBox() {
           <Button shape='circle' icon={<EditOutlined />} style={{ padding: '0 0 0 0.5em', margin: '0 0 0 0.3em' }}
             onClick={
               () => {
-                navigator('/home')
+                // console.log(1);
+                Navigate(`/news-manage/update/${item.id}`)
               }
             } >  </Button>
           <Button type='primary' shape='circle' icon={<UploadOutlined />} style={{ padding: '0 0 0 0.5em', margin: '0 0 0 0.3em' }}
-          >  </Button>
+            onClick={() => { handleCheckUpload(item.id) }}>  </Button>
         </div>
       }
     }
