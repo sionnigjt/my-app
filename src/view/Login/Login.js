@@ -5,7 +5,7 @@ import './Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 //粒子效果有问题
-// import Particles from 'react-particles-js';
+import ParticlesBg from 'particles-bg'
 export default function Login() {
   const Navigate = useNavigate()
   const onFinish = (value) => {
@@ -16,9 +16,23 @@ export default function Login() {
         Navigate('/home')
       })
   }
+  let config = {
+    num: [4, 7],
+    rps: 0.1,
+    radius: [5, 40],
+    life: [1.5, 3],
+    v: [2, 3],
+    tha: [-50, 50],
+    alpha: [0.6, 0],
+    scale: [.1, 0.9],
+    position: "all",
+    // color: ["random", "#ff0000"],
+    cross: "dead",
+    random: 10
+  };
   return (
-    <div style={{ background: "rgb(35,39,75)", height: "100%", overflow: "hidden" }}>
-      {/* <Particles /> */}
+    <div style={{ height: "100%", overflow: "hidden" }}>
+      <ParticlesBg type="custom" config={config} bg={true} />
       <div className='loginContent'>
         <div className='loginTitleName'>新闻发布系统</div>
         <Form
@@ -36,11 +50,13 @@ export default function Login() {
           <Form.Item
             name="password"
             rules={[{ required: true, message: 'Please input your Password!' }]}
+
           >
             <Input
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
+              autoComplete="on"
             />
           </Form.Item>
           <Form.Item>

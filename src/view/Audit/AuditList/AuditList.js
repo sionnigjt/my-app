@@ -1,45 +1,62 @@
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Button, Table, Tag, Modal } from 'antd'
-import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from "@ant-design/icons"
-import { Link } from 'react-router-dom';
+import { Button, Table, Tag, Modal, notification } from 'antd'
+import { ExclamationCircleOutlined } from "@ant-design/icons"
+import { Link, useNavigate } from 'react-router-dom';
 export default function AuditList() {
   const [dataSource, setdataSource] = useState([])
   const { username } = JSON.parse(localStorage.getItem('token'))
   useEffect(() => {
     //寻找未发布的
     axios.get(`/ajax/news?author=${username}&auditState_ne=0&pubilshState_lte=1&_expand=category`).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       setdataSource(res.data)
     })
   }, [username])
   const { confirm } = Modal;
-  const confirmMethod = (item) => {
+  const BackupList = (id) => {
     confirm({
-      title: '你确定要删除么?',
+      title: '你确定要撤销么?',
       icon: <ExclamationCircleOutlined />,
       onOk() {
-        deleteMethod(item)
+        //本地删除
+        setdataSource(dataSource.filter(data => data.id !== id))
+        //后端删除
+        axios.patch(`/ajax/news/${id}`, {
+          auditState: 0
+        }).then(res => {
+          notification.info({
+            message: `通知`,
+            description:
+              `你可以到草稿箱中查看您的新闻`,
+            placement: "bottomRight"
+          });
+        })
       },
       onCancel() {
       },
     });
   }
-  const deleteMethod = (item) => {
-    console.log(item);
-    //本地删除,后端删除
-    if (item.grade === 1) {
-      setdataSource(dataSource.filter((value) => value.id === item.rightId))
-      axios.delete(`/ajax/right/${item.id}`)
-    }
-    else {
-      let list = dataSource.filter((value) => value.id !== item.id)
-      list[0].children = list[0].children.filter(value => value.id !== item.id)
-      setdataSource([...dataSource])
-      axios.delete(`/ajax/children/${item.id}`)
-    }
+  const Navigate = useNavigate()
+  const updateList = (id) => {
+    //跳转页面
+    Navigate(`/news-manage/update/${id}`)
   }
+  const publishList = (id) => [
+    axios.patch(`/ajax/news/${id}`, {
+      "pubilshState": 2,
+      "publishTime": Date.now()
+    }).then(res => {
+      Navigate('/publish-manage/published')
+      notification.info({
+        message: `通知`,
+        description:
+          `发布成功`,
+        placement: "bottomRight"
+      });
+    })
+  ]
   const columns = [
     {
       title: '新闻标题',
@@ -63,17 +80,25 @@ export default function AuditList() {
       title: '审核状态',
       dataIndex: 'auditState',
       render: (auditState) => {
-        return auditState
+        let colorList = ['black', 'orange', 'green', 'red']
+        let AuditList = ["未审核", "待审核", "已通过", "未通过"]
+        return <Tag color={colorList[auditState]}>{AuditList[auditState]}</Tag>
       }
     }, {
       title: '操作',
       render: (item) => {
         return <div >
-          <Button danger
-            onClick={() => confirmMethod(item)}>发布</Button>
-
-
-
+          {
+            item.auditState === 1 && <Button onClick={() => BackupList(item.id)} >撤销</Button>
+          }
+          {
+            item.auditState === 2 && <Button danger onClick={() => { publishList(item.id) }}>发布</Button>
+          }
+          {
+            item.auditState === 3 && <Button type='primary' onClick={() => updateList(item.id)}>更新</Button>
+          }
+          {/* <Button danger
+            onClick={() => confirmMethod(item)}>发布</Button> */}
         </div>
       }
     }

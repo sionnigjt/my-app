@@ -125,6 +125,7 @@ export default function NewsUpdate() {
                 <div className={current === 1 ? "" : style.hidden}>
                     <NewsEditor getContent={(value) => {
                         setNewsContent(value)
+                        console.log(current);
                     }} content={Content}></NewsEditor>
                 </div>
                 <div className={current === 2 ? "" : style.hidden}> </div>

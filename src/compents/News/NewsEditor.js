@@ -17,7 +17,7 @@ export default function NewsEditor(props) {
                 seteditorState(editorState)
             }
         }
-      
+
     }, [props.content])
     return (
         <div>
@@ -35,7 +35,10 @@ export default function NewsEditor(props) {
                 onBlur={
                     () => {
                         //父组件调用
-                        props.getContent(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+                        if (editorState !== undefined) {
+                            props.getContent(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+                        }
+
                     }
                 }
             />

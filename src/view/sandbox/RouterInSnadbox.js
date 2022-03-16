@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from '../Home/Home'
 import Userlist from '../user-manage/Userlist'
 import RightManageList from '../right-manage/RightManageList'
@@ -13,6 +13,8 @@ import Published from '../../view/Publish/published/Published'
 import Uppublished from '../../view/Publish/unpublished/Unpublished'
 import NewsPreview from '../../compents/News/NewsPreview'
 import NewsUpdate from '../News/NewsUpdate/NewsUpdate'
+import AuditManage from '../Audit/AuditManage/AuditManage'
+import Offline from '../Publish/Offline/Offline'
 import axios from 'axios'
 export default function RouterInSnadbox() {
     const routerMap = {
@@ -27,8 +29,10 @@ export default function RouterInSnadbox() {
         '/news-manage/preview/:id': <NewsPreview></NewsPreview>,
         '/news-manage/update/:id': <NewsUpdate></NewsUpdate>,
         '/audit-manage/list': <AuditList></AuditList>,
+        '/audit-manage/manage': <AuditManage></AuditManage>,
         '/publish-manage/unpublished': <Uppublished></Uppublished>,
         '/publish-manage/published': <Published></Published>,
+        '/publish-manage/Offline': <Offline></Offline>,
         '*': <NotFound />
     }
     const { role: { rights } } = JSON.parse(localStorage.getItem('token'))

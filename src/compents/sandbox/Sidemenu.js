@@ -8,6 +8,7 @@ import {
   BarsOutlined,
   HomeOutlined,
   DesktopOutlined,
+  MoreOutlined
 } from '@ant-design/icons';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -175,8 +176,8 @@ export default function Sidemenu() {
     // "/right-manage/role/list": <UploadOutlined></UploadOutlined>,
     "/news-manage": <BarsOutlined />,
     "/audit-manage": <DesktopOutlined />,
-    "/audit-manage/list": <DesktopOutlined />,
-    // "/publish-manage": <MoreOutlined />,
+    // "/audit-manage/list": <DesktopOutlined />,
+    "/publish-manage": <MoreOutlined />,
   }
   //请求数据
   useEffect(() => {

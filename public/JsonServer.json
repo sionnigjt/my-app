@@ -83,7 +83,7 @@
     },
     {
       "id": 9,
-      "title": "权权限色",
+      "title": "角色权限",
       "rightId": 7,
       "key": "/right-manage/right/list",
       "pagePermission": 1,
@@ -138,6 +138,14 @@
       "grade": 2
     },
     {
+      "id": 24,
+      "title": "审核新闻",
+      "rightId": 21,
+      "key": "/audit-manage/manage",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
       "id": 25,
       "title": "待发布",
       "rightId": 24,
@@ -150,6 +158,14 @@
       "title": "已发布",
       "rightId": 24,
       "key": "/publish-manage/published",
+      "pagePermission": 1,
+      "grade": 2
+    },
+    {
+      "id": 28,
+      "title": "已下线",
+      "rightId": 24,
+      "key": "/publish-manage/Offline",
       "pagePermission": 1,
       "grade": 2
     }
@@ -185,7 +201,9 @@
         "/news-manage/category",
         "/news-manage/preview",
         "/news-manage/preview/:id",
-        "/news-manage/update/:id"
+        "/news-manage/update/:id",
+        "/audit-manage/manage",
+        "/publish-manage/Offline"
       ]
     },
     {
@@ -198,17 +216,17 @@
         "/publish-manage/unpublished",
         "/publish-manage/published",
         "/home",
-        "/user-manage",
-        "/user-manage/list",
         "/news-manage/add",
         "/news-manage/draft",
         "/news-manage/category",
-        "/user-manage/add",
         "/right-manage",
         "/right-manage/role/list",
         "/audit-manage",
         "/news-manage",
-        "/publish-manage"
+        "/publish-manage",
+        "/news-manage/preview/:id",
+        "/news-manage/update/:id",
+        "/audit-manage/manage"
       ]
     },
     {
@@ -218,17 +236,15 @@
       "rights": [
         "/news-manage",
         "/audit-manage",
-        "/audit-manage/list",
         "/publish-manage/",
         "/publish-manage/unpublished",
         "/publish-manage/published",
         "/home",
-        "/user-manage/list",
-        "/right-manage",
-        "/user-manage",
         "/news-manage/add",
         "/news-manage/draft",
-        "/news-manage/category"
+        "/news-manage/category",
+        "/publish-manage",
+        "/audit-manage/list"
       ]
     }
   ],
@@ -279,15 +295,6 @@
       "id": 9
     },
     {
-      "username": "test",
-      "password": "123",
-      "region": "亚洲",
-      "roleId": 3,
-      "roleSate": true,
-      "default": false,
-      "id": 10
-    },
-    {
       "username": "123123",
       "password": "1231",
       "region": "大洋洲",
@@ -306,15 +313,6 @@
       "id": 12
     },
     {
-      "username": "1231",
-      "password": "414124",
-      "region": "南极洲",
-      "roleId": 3,
-      "roleSate": true,
-      "default": false,
-      "id": 13
-    },
-    {
       "username": "testqewfrqwfqw",
       "password": "qwrf",
       "region": "欧洲",
@@ -322,6 +320,15 @@
       "roleSate": true,
       "default": false,
       "id": 14
+    },
+    {
+      "username": "test",
+      "password": "123",
+      "region": "南极洲",
+      "roleId": 3,
+      "roleSate": true,
+      "default": false,
+      "id": 15
     }
   ],
   "regions": [
@@ -378,75 +385,75 @@
   ],
   "news": [
     {
-      "title": "内容标题",
-      "categoryId": 3,
-      "content": "<p>hi</p>",
+      "title": "新闻1",
+      "categoryId": 1,
+      "content": "<p>2热人2人2人2rr</p>\n",
       "region": "全球",
       "author": "admin",
       "roleId": 1,
       "auditState": 2,
-      "pubilshState": 0,
-      "createTime": 1647050413536,
-      "star": 100,
-      "view": 2005,
-      "id": 1,
-      "publishTime": 1647050429448
+      "pubilshState": 3,
+      "createTime": 1647398282692,
+      "star": 0,
+      "view": 0,
+      "publishTime": 1647400591088,
+      "id": 1
     },
     {
-      "title": "请问热情",
+      "title": "额",
       "categoryId": 1,
-      "content": "<p>1241234</p>\n",
+      "content": "<p>214 124人</p>\n",
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 1,
-      "pubilshState": 0,
-      "createTime": 1647136319500,
+      "auditState": 2,
+      "pubilshState": 2,
+      "createTime": 1647400607543,
       "star": 0,
       "view": 0,
       "publishTime": 0,
       "id": 2
     },
     {
-      "title": "wfqwf",
-      "categoryId": 2,
-      "content": "<p>qwtTWETGEW</p>\n",
+      "title": "请问特区问题更为",
+      "categoryId": 1,
+      "content": "<p>违法违规和我如果货物</p>\n",
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 1,
+      "auditState": 3,
       "pubilshState": 0,
-      "createTime": 1647159103442,
+      "createTime": 1647400950040,
       "star": 0,
       "view": 0,
       "publishTime": 0,
       "id": 3
     },
     {
-      "title": "wrq",
-      "categoryId": 1,
-      "content": "<p>qwr</p>\n",
+      "title": "请问热情无人区",
+      "categoryId": 2,
+      "content": "<p>去问人体父亲为他各位荣获微软规划whew然后</p>\n",
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 1,
-      "pubilshState": 0,
-      "createTime": 1647332839347,
+      "auditState": 2,
+      "pubilshState": 2,
+      "createTime": 1647402990464,
       "star": 0,
       "view": 0,
-      "publishTime": 0,
+      "publishTime": 1647403023354,
       "id": 4
     },
     {
-      "title": "afqwf",
-      "categoryId": 1,
-      "content": "<p>qwtfgqw</p>\n",
+      "title": "待发布",
+      "categoryId": 3,
+      "content": "<p>服务器发过去各位各位如果</p>\n",
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 0,
-      "pubilshState": 0,
-      "createTime": 1647333136465,
+      "auditState": 2,
+      "pubilshState": 1,
+      "createTime": 1647403072258,
       "star": 0,
       "view": 0,
       "publishTime": 0,

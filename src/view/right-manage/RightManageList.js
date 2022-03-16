@@ -9,7 +9,7 @@ export default function RightManageList() {
   useEffect(() => {
     axios.get("/ajax/right?_embed=children").then((res) => {
       setdataSource(res.data)
-      console.log(res.data);
+      // console.log(res.data);
     })
   }, [])
   const { confirm } = Modal;
@@ -25,7 +25,7 @@ export default function RightManageList() {
     });
   }
   const deleteMethod = (item) => {
-    console.log(item);
+    // console.log(item);
     //本地删除,后端删除
     if (item.grade === 1) {
       setdataSource(dataSource.filter((value) => value.id === item.rightId))
@@ -49,12 +49,12 @@ export default function RightManageList() {
     const Patchdatas = () => {
       if (item.grade === 1) {
         axios.patch(`/ajax/right/${item.id}`, { pagePermission: item.pagePermission }).then(function (response) {
-          console.log(response);
+          // console.log(response);
         }).catch(e => { console.log(e); })
       }
       else {
         axios.patch(`/ajax/children/${item.id}`, { pagePermission: item.pagePermission }).then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
       }
     }

@@ -5,12 +5,14 @@
     transform: translate(-50%,-50%);
   width: 500px;
   padding: 20px;
-  background:rgba(0, 0, 0, 0.6)
+  background:rgba(0, 0, 0, 0.041);
+   backdrop-filter: blur(6px);
+   border-radius: 5px;
     /* height: 500px;  */
 }
 .loginTitleName{
     text-align: center;
-    color: aliceblue;
+    color: rgb(47, 47, 48);
     font-size: 28px;
     padding-bottom: 12px;
 }
