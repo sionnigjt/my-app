@@ -81,7 +81,7 @@ let data = [
       },
       {
         "id": 9,
-        "title": "权权限色",
+        "title": "角色权限",
         "rightId": 7,
         "key": "/right-manage/right/list",
         "pagePermission": 1,
@@ -119,6 +119,22 @@ let data = [
         "key": "/news-manage/category",
         "pagePermission": 1,
         "grade": 2
+      },
+      {
+        "id": 13,
+        "title": "新闻预览",
+        "rightId": 14,
+        "key": "/news-manage/preview/:id",
+        "routePermission": 1,
+        "grade": 2
+      },
+      {
+        "id": 14,
+        "title": "新闻更新",
+        "rightId": 14,
+        "key": "/news-manage/update/:id",
+        "routePermission": 1,
+        "grade": 2
       }
     ]
   },
@@ -136,12 +152,20 @@ let data = [
         "key": "/audit-manage/list",
         "pagePermission": 1,
         "grade": 2
+      },
+      {
+        "id": 24,
+        "title": "审核新闻",
+        "rightId": 21,
+        "key": "/audit-manage/manage",
+        "pagePermission": 1,
+        "grade": 2
       }
     ]
   },
   {
     "id": 24,
-    "key": "/publish-manage/",
+    "key": "/publish-manage",
     "title": "发布管理",
     "pagePermission": 1,
     "grade": 1,
@@ -159,6 +183,14 @@ let data = [
         "title": "已发布",
         "rightId": 24,
         "key": "/publish-manage/published",
+        "pagePermission": 1,
+        "grade": 2
+      },
+      {
+        "id": 28,
+        "title": "已下线",
+        "rightId": 24,
+        "key": "/publish-manage/Offline",
         "pagePermission": 1,
         "grade": 2
       }
