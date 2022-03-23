@@ -106,14 +106,6 @@
       "grade": 2
     },
     {
-      "id": 12,
-      "title": "新闻分类",
-      "rightId": 14,
-      "key": "/news-manage/category",
-      "pagePermission": 1,
-      "grade": 2
-    },
-    {
       "id": 13,
       "title": "新闻预览",
       "rightId": 14,
@@ -183,7 +175,6 @@
         "/user-manage/list",
         "/right-manage",
         "/right-manage/role/list",
-        "/right-manage/right/list",
         "news-manage/add",
         "/publish-manage/published",
         "news-manage/list",
@@ -203,7 +194,8 @@
         "/news-manage/preview/:id",
         "/news-manage/update/:id",
         "/audit-manage/manage",
-        "/publish-manage/Offline"
+        "/publish-manage/Offline",
+        "/right-manage/right/list"
       ]
     },
     {

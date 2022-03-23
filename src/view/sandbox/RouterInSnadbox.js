@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { Spin } from 'antd'
 import Home from '../Home/Home'
 import Userlist from '../user-manage/Userlist'
 import RightManageList from '../right-manage/RightManageList'
@@ -7,7 +8,7 @@ import RightRoleList from '../right-manage/RightRoleList'
 import WriteNews from '../News/WriteNews/WriteNews'
 import DraftBox from '../News/DraftBox/DraftBox'
 import AuditList from '../Audit/AuditList/AuditList'
-import CategoryNews from '../News/CategoryNews/CategoryNews'
+// import CategoryNews from '../News/CategoryNews/CategoryNews'
 import NotFound from '../../compents/404/NotFound'
 import Published from '../../view/Publish/published/Published'
 import Uppublished from '../../view/Publish/unpublished/Unpublished'
@@ -16,7 +17,9 @@ import NewsUpdate from '../News/NewsUpdate/NewsUpdate'
 import AuditManage from '../Audit/AuditManage/AuditManage'
 import Offline from '../Publish/Offline/Offline'
 import axios from 'axios'
-export default function RouterInSnadbox() {
+import { connect } from 'react-redux'
+
+function RouterInSnadbox(props) {
     const routerMap = {
         '': <Home />,
         '/home': <Home />,
@@ -25,7 +28,7 @@ export default function RouterInSnadbox() {
         '/right-manage/role/list': <RightRoleList></RightRoleList>,
         '/news-manage/add': <WriteNews></WriteNews>,
         '/news-manage/draft': <DraftBox></DraftBox>,
-        '/news-manage/category': <CategoryNews></CategoryNews>,
+        // '/news-manage/category': <CategoryNews></CategoryNews>,
         '/news-manage/preview/:id': <NewsPreview></NewsPreview>,
         '/news-manage/update/:id': <NewsUpdate></NewsUpdate>,
         '/audit-manage/list': <AuditList></AuditList>,
@@ -58,9 +61,20 @@ export default function RouterInSnadbox() {
             else return <Route path={"*"} element={<NotFound />} key={-1}></Route>
         })
     }
+
+    
     return (
-        <Routes>
-            {createRoute(routerMap)}
-        </Routes>
+        <Spin spinning={props.isLoading}>
+            <Routes>
+                {createRoute(routerMap)}
+            </Routes>
+        </Spin>
+
     )
 }
+const mapStateToprops = ({ LoadingReducer: { isLoading } }) => {
+    return {
+        isLoading
+    }
+}
+export default connect(mapStateToprops)(RouterInSnadbox)  

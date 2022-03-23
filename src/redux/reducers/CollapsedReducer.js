@@ -1,5 +1,5 @@
 export const CollapsedReducer = (pre = {
-    isCollapsed: true
+    isCollapsed: false
 }, action) => {
     let { type } = action
     switch (type) {

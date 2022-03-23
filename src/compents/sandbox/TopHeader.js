@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Header } from 'antd/lib/layout/layout'
 import {
     MenuUnfoldOutlined,
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { Dropdown, Menu, Avatar } from 'antd';
 import { connect } from 'react-redux'
 function TopHeader(props) {
-    console.log(props);
+    // console.log(props);
     const Navigate = useNavigate()
     const { role: { roleName }, username } = JSON.parse(localStorage.getItem('token'))
     const changeCollapsed = () => {

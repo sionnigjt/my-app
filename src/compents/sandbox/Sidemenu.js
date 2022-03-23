@@ -13,7 +13,7 @@ import {
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios'
-
+import { connect } from 'react-redux'
 const { Sider } = Layout;
 
 //模拟数组结构,占据位置放置重绘,删除会导致刷新慢
@@ -197,7 +197,7 @@ let data = [
     ]
   }
 ]
-export default function Sidemenu() {
+function Sidemenu(props) {
   const [menuList, setMenuList] = useState(data)
   const navigate = useNavigate()
   const iconMap = {
@@ -214,7 +214,7 @@ export default function Sidemenu() {
   //请求数据
   useEffect(() => {
     axios.get("/ajax/right?_embed=children").then((resolve) => {
-      // console.log(resolve.data);
+      console.log("111111");
       setMenuList(resolve.data)
     })
   }, [])
@@ -245,7 +245,7 @@ export default function Sidemenu() {
   // console.log(pathname, openKeys);
   checkPath(pathname, openKeys)
   return (
-    <Sider trigger={null} collapsed={false}  >
+    <Sider trigger={null} collapsed={props.isCollapsed}  >
       <div style={{ display: 'flex', height: '100%', flexDirection: 'column' }}>
         <div className="logo" >新闻发布系统</div>
         <div style={{ flex: 1, overflow: 'auto' }}>
@@ -259,3 +259,9 @@ export default function Sidemenu() {
     </Sider>)
 
 }
+const mapStateToprops = ({ CollapsedReducer: { isCollapsed } }) => {
+  return {
+    isCollapsed
+  }
+}
+export default connect(mapStateToprops)(Sidemenu) 
